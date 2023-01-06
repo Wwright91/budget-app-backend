@@ -7,7 +7,6 @@ const {
   checkExists,
 } = require("../models/validation");
 
-
 // res.send("Please Check Given Index Or Go Back To The <a href="/">Homepage</a>")
 
 budgetEntries.get("/", (req, res) => {
@@ -33,14 +32,9 @@ budgetEntries.delete("/:index", checkExists, (req, res) => {
   res.status(200).json(deletedLog);
 });
 
-budgetEntries.put(
-  "/:index",
-  validateURL,
-  checkExists,
-  async (req, res) => {
-    budgetArray[req.params.index] = req.body;
-    res.status(200).json(budgetArray[req.params.index]);
-  }
-);
+budgetEntries.put("/:index", validateURL, checkExists, async (req, res) => {
+  budgetArray[req.params.index] = req.body;
+  res.status(200).json(budgetArray[req.params.index]);
+});
 
 module.exports = budgetEntries;
